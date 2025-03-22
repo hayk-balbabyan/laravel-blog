@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $sort = $request->query('sort', 'desc'); // По умолчанию сортируем по убыванию
+        $sort = $request->query('sort', 'desc');
         $order = $request->query('order', 'title');
 
         $posts = Post::orderBy($order, $sort)->get();
@@ -50,7 +50,7 @@ class PostController extends Controller
 
         Post::create($validated);
 
-        return redirect()->route('my_post')->with('success', 'Пост успешно создан!');
+        return redirect()->route('my_post')->with('success', 'Post successfully created.');
     }
 
 
@@ -83,7 +83,7 @@ class PostController extends Controller
         }
 
         $post->update($validated);
-        return redirect()->route('my_post')->with('success', 'Пост успешно обновлен!');
+        return redirect()->route('my_post')->with('success', 'Post successfully updated.');
 
     }
 

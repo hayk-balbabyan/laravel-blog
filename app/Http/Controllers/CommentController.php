@@ -20,18 +20,18 @@ class CommentController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return back()->with('success', 'Комментарий добавлен!');
+        return back()->with('success', 'Comment added successfully!');
     }
 
     public function destroy(Comment $comment)
     {
         if (auth()->id() !== $comment->user_id) {
-            return back()->with('error', 'Вы не можете удалить этот комментарий.');
+            return back()->with('error', 'You dont have permission to delete this comment!');
         }
 
         $comment->delete();
 
-        return back()->with('success', 'Комментарий удален!');
+        return back()->with('success', 'Comment deleted successfully!');
     }
 }
 

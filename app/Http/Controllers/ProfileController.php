@@ -46,7 +46,7 @@ class ProfileController extends Controller
                 // Save the file name in the validated array or database (store the relative path)
                 $validated['image'] = 'avatars/' . $filename; // Store the relative path
             } else {
-                return redirect()->back()->with('error', 'Ошибка при загрузке файла.');
+                return redirect()->back()->with('error', 'Error occurred while uploading image.');
             }
         }
 
@@ -54,7 +54,7 @@ class ProfileController extends Controller
 
         $user->update($validated);
 
-        return redirect('/profile')->with('success', 'Профиль обновлен!');
+        return redirect('/profile')->with('success', 'Profile updated!');
     }
 
     /**

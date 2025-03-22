@@ -36,13 +36,13 @@
 
 @section('content')
     <div class="container my_container">
-        <h1 class="title">Создать новый пост</h1>
+        <h1 class="title">Create a new post</h1>
 
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
-                <label for="title" class="form-label">Заголовок</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
                 @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="content" class="form-label">Содержание</label>
+                <label for="content" class="form-label">Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" required>{{ old('content') }}</textarea>
                 @error('content')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -65,7 +65,7 @@
                 </label>
             </div>
 
-            <button type="submit" class="creat_btn">Создать пост</button>
+            <button type="submit" class="creat_btn">Create post</button>
         </form>
     </div>
 @endsection

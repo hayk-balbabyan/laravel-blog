@@ -51,14 +51,14 @@
 
     @section('content')
         <div class="container my_container">
-            <h1 class="title">Редактирование профиля</h1>
+            <h1 class="title">Edit profile</h1>
 
             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="edit_form">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Имя</label>
+                    <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" value="{{ old('name', auth()->user()->name) }}">
                 </div>
 
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="mb-3 image_block">
-                    <label for="image" class="form-label">Изображение профиля</label>
+                    <label for="image" class="form-label">Profile picture</label>
                     <input type="file" name="image" class="form-control" id="image" style="display: none;" onchange="previewImage(event)">
 
                     @if(auth()->user()->image)
@@ -82,7 +82,7 @@
                     @endif
                 </div>
 
-                <button type="submit" class="save_btn">Сохранить</button>
+                <button type="submit" class="save_btn">Save</button>
             </form>
         </div>
     @endsection

@@ -70,9 +70,9 @@
 </style>
 @section('content')
     <div class="container my_container">
-        <h1 class="title">Добро пожаловать в панель управления</h1>
+        <h1 class="title">Welcome to the dashboard!</h1>
 
-        <a href="{{ route('posts.create') }}" class="creat_btn">Создать новый пост</a>
+        <a href="{{ route('posts.create') }}" class="creat_btn">Create a new post</a>
         @foreach ($posts as $post)
             <div class="post">
                 <tr class="table_posts">
@@ -85,8 +85,8 @@
                         <form action="{{ route('posts.destroy', $post) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('posts.edit', $post) }}" class="edit_btn">Редактировать</a>
-                            <button type="submit" class="delete_btn">Удалить</button>
+                            <a href="{{ route('posts.edit', $post) }}" class="edit_btn">Edit</a>
+                            <button type="submit" class="delete_btn">Delete</button>
                         </form>
                     </td>
                 </tr>

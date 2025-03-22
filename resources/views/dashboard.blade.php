@@ -114,17 +114,17 @@
 
 @section('content')
     <div class="container my_container">
-        <h2 class="title">Список постов</h2>
+        <h2 class="title">Posts list</h2>
 
         @if ($posts->isEmpty())
-            <p>Посты отсутствуют.</p>
+            <p>No posts found.</p>
         @else
             Order by - {{  $newSort = $sort == 'asc'?  'desc' :'asc' }}
             <table class="table">
                 <thead>
                 <tr class="table_title">
-                    <th><a href="{{ route('posts.index', ['sort' => $newSort , 'order' => 'title']) }}"> Заголовок </a></th>
-                    <th><a href="{{ route('posts.index', ['sort' => $newSort , 'order'=> 'content']) }}">Действия</a></th>
+                    <th><a href="{{ route('posts.index', ['sort' => $newSort , 'order' => 'title']) }}">Title</a></th>
+                    <th><a href="{{ route('posts.index', ['sort' => $newSort , 'order'=> 'content']) }}">Action</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -153,11 +153,11 @@
                                             @error('content')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-                                            <button type="submit" class="add_comm">Добавить</button>
-                                            <h3 class="comments_toggle">Комментарии {{ $post->comments->count() }}</h3>
+                                            <button type="submit" class="add_comm">Add</button>
+                                            <h3 class="comments_toggle">Comments {{ $post->comments->count() }}</h3>
                                         </form>
                                     @else
-                                        <p><a href="{{ route('login') }}">Войдите</a>, чтобы оставить комментарий.</p>
+                                        <p>Please <a href="{{ route('login') }}">login</a>, to leave comment.</p>
                                     @endif
                                 </div>
                                 <div class="comments_block">
@@ -170,7 +170,7 @@
                                                 <form action="{{ route('comments.destroy', $comment) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="delete_comm">Удалить</button>
+                                                    <button type="submit" class="delete_comm">Delete</button>
                                                 </form>
                                             @endif
                                         </div>
