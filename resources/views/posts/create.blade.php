@@ -1,0 +1,85 @@
+@extends('layouts.app')
+
+<style>
+    .my_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 500px!important;
+        margin: 20px auto;
+        background-color: #dadada;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .title {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .mb-3 {
+        display: flex;
+        flex-direction: column;
+    }
+    .creat_btn {
+        background-color: orangered;
+        color: white;
+        font-size: 14px;
+        border-radius: 8px;
+        padding: 5px 10px;
+        transition: 0.3s;
+        margin: 10px 0;
+    }
+    .creat_btn:hover {
+        background-color: #912600;
+    }
+</style>
+
+@section('content')
+    <div class="container my_container">
+        <h1 class="title">Создать новый пост</h1>
+
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Заголовок</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+                @error('title')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Содержание</label>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" required>{{ old('content') }}</textarea>
+                @error('content')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <input type="file" name="image" class="form-control" id="image" style="display: none;" onchange="previewImage(event)">
+
+                <label for="image">
+                    <img id="preview" src="" alt="Phone image" width="150px" style="cursor: pointer;">
+                </label>
+            </div>
+
+            <button type="submit" class="creat_btn">Создать пост</button>
+        </form>
+    </div>
+@endsection
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            document.getElementById('preview').src = reader.result;
+        };
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
